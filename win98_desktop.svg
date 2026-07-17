@@ -39,8 +39,8 @@
     }
   </style>
 
-  <!-- 1. Fond d'écran Vert-Bleu Teal classique (#008080) -->
-  <rect width="800" height="550" fill="#008080" />
+  <!-- 1. Fond d'écran Noir (#000000) -->
+  <rect width="800" height="550" fill="#000000" />
 
   <!-- 2. ICÔNES DU BUREAU -->
   
@@ -183,26 +183,26 @@
     <text x="110" y="162" class="retro-text">Docker, Git, Bash, Linux Debian</text>
 
     <!-- Section Projets -->
-    <text x="0" y="195" class="retro-text-bold" fill="#000080">[ 3. Fichiers exécutables installés (Projets) ]</text>
+    <text x="0" y="195" class="retro-text-bold" fill="#000080">[ 3. Répertoires de projets (Projets) ]</text>
     
     <!-- Projet 1 -->
     <path d="M17,211 L23,211 L25,213 L33,213 L33,222 L17,222 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
-    <text x="38" y="220" class="retro-text-bold">APEX-ASSIST.EXE</text>
+    <text x="38" y="220" class="retro-text-bold">APEX-ASSIST</text>
     <text x="160" y="220" class="retro-text">— Assistant IA personnel développé en TypeScript.</text>
 
     <!-- Projet 2 -->
     <path d="M17,231 L23,231 L25,233 L33,233 L33,242 L17,242 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
-    <text x="38" y="240" class="retro-text-bold">CHATAPP.EXE</text>
+    <text x="38" y="240" class="retro-text-bold">CHATAPP</text>
     <text x="160" y="240" class="retro-text">— Application de messagerie privée sous Android (Kotlin).</text>
 
     <!-- Projet 3 -->
     <path d="M17,251 L23,251 L25,253 L33,253 L33,262 L17,262 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
-    <text x="38" y="260" class="retro-text-bold">MYDESK.EXE</text>
+    <text x="38" y="260" class="retro-text-bold">MYDESK</text>
     <text x="160" y="260" class="retro-text">— Environnement de bureau virtuel (Web Desktop) avec EJS.</text>
 
     <!-- Projet 4 -->
     <path d="M17,271 L23,271 L25,273 L33,273 L33,282 L17,282 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
-    <text x="38" y="280" class="retro-text-bold">ENI_ENCHERES.EXE</text>
+    <text x="38" y="280" class="retro-text-bold">ENI_ENCHERES</text>
     <text x="160" y="280" class="retro-text">— Plateforme d'enchères en ligne développée en Java.</text>
 
     <!-- Bouton interactif simulé -->
