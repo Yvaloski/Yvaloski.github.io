@@ -1,0 +1,277 @@
+<svg width="800" height="550" viewBox="0 0 800 550" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Dégradé de la barre de titre classique de Windows 98 -->
+    <linearGradient id="title-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#000080" />
+      <stop offset="100%" stop-color="#1084d0" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .retro-text {
+      font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      fill: #000000;
+    }
+    .retro-text-bold {
+      font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      fill: #000000;
+    }
+    .icon-text {
+      font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+      font-size: 10px;
+      fill: #ffffff;
+      text-anchor: middle;
+    }
+    .window-title {
+      font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      fill: #ffffff;
+    }
+    .h1-retro {
+      font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: #000080;
+    }
+  </style>
+
+  <!-- 1. Fond d'écran Vert-Bleu Teal classique (#008080) -->
+  <rect width="800" height="550" fill="#008080" />
+
+  <!-- 2. ICÔNES DU BUREAU -->
+  
+  <!-- Poste de travail (My Computer) -->
+  <g transform="translate(25, 25)">
+    <!-- Écran -->
+    <rect x="5" y="0" width="22" height="16" fill="#c0c0c0" stroke="#000000" stroke-width="1.5"/>
+    <rect x="7" y="2" width="18" height="12" fill="#3a6ea5" />
+    <!-- Pied -->
+    <path d="M12,16 L20,16 L18,21 L14,21 Z" fill="#808080" stroke="#000000" stroke-width="1"/>
+    <!-- Socle -->
+    <rect x="10" y="21" width="12" height="2" fill="#c0c0c0" stroke="#000000" />
+    <text x="16" y="34" class="icon-text">Poste de travail</text>
+  </g>
+
+  <!-- Mes Documents (My Documents) -->
+  <g transform="translate(25, 95)">
+    <!-- Dossier -->
+    <path d="M2,4 L10,4 L13,7 L28,7 L28,22 L2,22 Z" fill="#ffd700" stroke="#000000" stroke-width="1.5"/>
+    <path d="M2,7 L28,7" stroke="#ffffff" stroke-width="1"/>
+    <!-- Feuille qui dépasse -->
+    <rect x="8" y="10" width="14" height="8" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+    <line x1="11" y1="13" x2="19" y2="13" stroke="#000000" stroke-width="1"/>
+    <line x1="11" y1="15" x2="17" y2="15" stroke="#000000" stroke-width="1"/>
+    <text x="16" y="34" class="icon-text">Mes Documents</text>
+  </g>
+
+  <!-- Internet Explorer -->
+  <g transform="translate(25, 165)">
+    <!-- Le grand "e" bleu -->
+    <circle cx="16" cy="11" r="9" stroke="#00a8ff" stroke-width="3" fill="none" />
+    <line x1="7" y1="11" x2="25" y2="11" stroke="#00a8ff" stroke-width="3" />
+    <!-- L'orbite jaune -->
+    <ellipse cx="16" cy="11" rx="14" ry="4" stroke="#ffd700" stroke-width="2.5" fill="none" transform="rotate(-30, 16, 11)" />
+    <text x="16" y="34" class="icon-text">Ollama Explorer</text>
+  </g>
+
+  <!-- Corbeille (Recycle Bin) -->
+  <g transform="translate(25, 235)">
+    <!-- Poubelle vide -->
+    <path d="M8,4 L24,4 L22,22 L10,22 Z" fill="#c0c0c0" stroke="#000000" stroke-width="1.5"/>
+    <ellipse cx="16" cy="4" rx="8" ry="2" fill="#808080" stroke="#000000" stroke-width="1.5"/>
+    <!-- Petites flèches vertes de recyclage -->
+    <path d="M12,10 L14,14 L10,14 Z" fill="#008000" />
+    <text x="16" y="34" class="icon-text">Corbeille</text>
+  </g>
+
+
+  <!-- 3. FENÊTRE PRINCIPALE (Yvaloski_CV.exe) -->
+  <!-- Fond gris de la fenêtre -->
+  <rect x="130" y="25" width="645" height="465" fill="#c0c0c0" />
+  
+  <!-- Bordure 3D de la fenêtre (Bevel Out) -->
+  <!-- Bordure blanche haut/gauche -->
+  <line x1="130" y1="25" x2="775" y2="25" stroke="#ffffff" stroke-width="1.5" />
+  <line x1="130" y1="25" x2="130" y2="490" stroke="#ffffff" stroke-width="1.5" />
+  <!-- Bordure gris foncé bas/droite -->
+  <line x1="131" y1="489" x2="775" y2="489" stroke="#808080" stroke-width="1.5" />
+  <line x1="774" y1="26" x2="774" y2="490" stroke="#808080" stroke-width="1.5" />
+  <!-- Bordure noire extérieure bas/droite -->
+  <line x1="130" y1="490" x2="775" y2="490" stroke="#000000" stroke-width="1.5" />
+  <line x1="775" y1="25" x2="775" y2="490" stroke="#000000" stroke-width="1.5" />
+
+  <!-- Barre de titre bleue -->
+  <rect x="134" y="29" width="637" height="20" fill="url(#title-gradient)" />
+  <text x="140" y="43" class="window-title">Yvaloski_CV.exe</text>
+
+  <!-- Boutons de la barre de titre (Réduire, Agrandir, Fermer) -->
+  <!-- Réduire -->
+  <g transform="translate(712, 31)">
+    <rect width="16" height="16" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+    <line x1="0" y1="15" x2="16" y2="15" stroke="#000000" />
+    <line x1="15" y1="0" x2="15" y2="16" stroke="#000000" />
+    <line x1="1" y1="14" x2="15" y2="14" stroke="#808080" />
+    <line x1="14" y1="1" x2="14" y2="15" stroke="#808080" />
+    <rect x="3" y="11" width="10" height="2" fill="#000000" />
+  </g>
+  <!-- Agrandir -->
+  <g transform="translate(730, 31)">
+    <rect width="16" height="16" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+    <line x1="0" y1="15" x2="16" y2="15" stroke="#000000" />
+    <line x1="15" y1="0" x2="15" y2="16" stroke="#000000" />
+    <line x1="1" y1="14" x2="15" y2="14" stroke="#808080" />
+    <line x1="14" y1="1" x2="14" y2="15" stroke="#808080" />
+    <rect x="3" y="3" width="10" height="9" fill="none" stroke="#000000" stroke-width="1.5" />
+  </g>
+  <!-- Fermer -->
+  <g transform="translate(748, 31)">
+    <rect width="16" height="16" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+    <line x1="0" y1="15" x2="16" y2="15" stroke="#000000" />
+    <line x1="15" y1="0" x2="15" y2="16" stroke="#000000" />
+    <line x1="1" y1="14" x2="15" y2="14" stroke="#808080" />
+    <line x1="14" y1="1" x2="14" y2="15" stroke="#808080" />
+    <path d="M4,4 L12,12 M12,4 L4,12" stroke="#000000" stroke-width="2" />
+  </g>
+
+  <!-- Barre de menu (Fichier, Édition, Aide...) -->
+  <g transform="translate(134, 50)">
+    <text x="10" y="13" class="retro-text">Fichier</text>
+    <text x="55" y="13" class="retro-text">Édition</text>
+    <text x="100" y="13" class="retro-text">Affichage</text>
+    <text x="155" y="13" class="retro-text">Aide</text>
+    <line x1="0" y1="18" x2="637" y2="18" stroke="#808080" stroke-width="1" />
+    <line x1="0" y1="19" x2="637" y2="19" stroke="#ffffff" stroke-width="1" />
+  </g>
+
+  <!-- ZONE DE TEXTE BLANCHE (Bevel In) -->
+  <rect x="142" y="77" width="621" height="403" fill="#ffffff" />
+  <!-- Bordure intérieure noire/gris foncé -->
+  <line x1="141" y1="76" x2="763" y2="76" stroke="#808080" stroke-width="1.5" />
+  <line x1="141" y1="76" x2="141" y2="480" stroke="#808080" stroke-width="1.5" />
+  <line x1="142" y1="77" x2="762" y2="77" stroke="#000000" stroke-width="1" />
+  <line x1="142" y1="77" x2="142" y2="479" stroke="#000000" stroke-width="1" />
+  <!-- Bordure extérieure blanche bas/droite -->
+  <line x1="141" y1="480" x2="763" y2="480" stroke="#ffffff" stroke-width="1.5" />
+  <line x1="763" y1="76" x2="763" y2="480" stroke="#ffffff" stroke-width="1.5" />
+
+  <!-- CONTENU DU CV (Texte) -->
+  <g transform="translate(160, 105)">
+    <!-- Titre principal -->
+    <text x="0" y="10" class="h1-retro">YVALOSKI — DÉVELOPPEUR FULL-STACK &amp; MOBILE</text>
+    <text x="0" y="26" class="retro-text-bold" fill="#808080">Système d'exploitation : Windows 98 SE (Second Edition)</text>
+    <line x1="0" y1="35" x2="585" y2="35" stroke="#c0c0c0" stroke-width="1.5" />
+
+    <!-- Section Profil -->
+    <text x="0" y="55" class="retro-text-bold" fill="#000080">[ 1. Profil du système ]</text>
+    <text x="15" y="72" class="retro-text">Passionné par le développement d'applications mobiles (Kotlin, Java) et web (PHP, JS).</text>
+    <text x="15" y="87" class="retro-text">Spécialisé dans la conteneurisation Docker et l'intégration de modèles d'IA locaux.</text>
+
+    <!-- Section Compétences -->
+    <text x="0" y="115" class="retro-text-bold" fill="#000080">[ 2. Périphériques d'entrée/sortie (Compétences) ]</text>
+    
+    <text x="15" y="132" class="retro-text-bold">Backend &amp; Web :</text>
+    <text x="110" y="132" class="retro-text">PHP (Symfony), Java (JEE/Spring), Python, EJS</text>
+    
+    <text x="15" y="147" class="retro-text-bold">Mobile &amp; Front :</text>
+    <text x="110" y="147" class="retro-text">Kotlin (Android SDK), JavaScript, TypeScript</text>
+    
+    <text x="15" y="162" class="retro-text-bold">DevOps &amp; OS :</text>
+    <text x="110" y="162" class="retro-text">Docker, Git, Bash, Linux Debian</text>
+
+    <!-- Section Projets -->
+    <text x="0" y="195" class="retro-text-bold" fill="#000080">[ 3. Fichiers exécutables installés (Projets) ]</text>
+    
+    <!-- Projet 1 -->
+    <path d="M17,211 L23,211 L25,213 L33,213 L33,222 L17,222 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
+    <text x="38" y="220" class="retro-text-bold">APEX-ASSIST.EXE</text>
+    <text x="160" y="220" class="retro-text">— Assistant IA personnel développé en TypeScript.</text>
+
+    <!-- Projet 2 -->
+    <path d="M17,231 L23,231 L25,233 L33,233 L33,242 L17,242 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
+    <text x="38" y="240" class="retro-text-bold">CHATAPP.EXE</text>
+    <text x="160" y="240" class="retro-text">— Application de messagerie privée sous Android (Kotlin).</text>
+
+    <!-- Projet 3 -->
+    <path d="M17,251 L23,251 L25,253 L33,253 L33,262 L17,262 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
+    <text x="38" y="260" class="retro-text-bold">MYDESK.EXE</text>
+    <text x="160" y="260" class="retro-text">— Environnement de bureau virtuel (Web Desktop) avec EJS.</text>
+
+    <!-- Projet 4 -->
+    <path d="M17,271 L23,271 L25,273 L33,273 L33,282 L17,282 Z" fill="#ffd700" stroke="#000" stroke-width="1"/>
+    <text x="38" y="280" class="retro-text-bold">ENI_ENCHERES.EXE</text>
+    <text x="160" y="280" class="retro-text">— Plateforme d'enchères en ligne développée en Java.</text>
+
+    <!-- Bouton interactif simulé -->
+    <g transform="translate(150, 315)">
+      <rect width="280" height="24" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+      <line x1="0" y1="23" x2="280" y2="23" stroke="#000000" />
+      <line x1="279" y1="0" x2="279" y2="24" stroke="#000000" />
+      <line x1="1" y1="22" x2="280" y2="22" stroke="#808080" />
+      <line x1="278" y1="1" x2="278" y2="23" stroke="#808080" />
+      <text x="140" y="16" font-family="'MS Sans Serif', Geneva, sans-serif" font-size="11" fill="#000000" font-weight="bold" text-anchor="middle">Executer une mise à jour (Faire un commit)</text>
+    </g>
+  </g>
+
+
+  <!-- 4. BARRE DES TÂCHES WINDOWS 98 (Bottom Taskbar) -->
+  <rect x="0" y="515" width="800" height="35" fill="#c0c0c0" />
+  <line x1="0" y1="515" x2="800" y2="515" stroke="#ffffff" stroke-width="1.5" />
+  
+  <!-- Bouton Démarrer (Start) -->
+  <g transform="translate(4, 520)">
+    <rect width="65" height="24" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+    <line x1="0" y1="23" x2="65" y2="23" stroke="#000000" />
+    <line x1="64" y1="0" x2="64" y2="24" stroke="#000000" />
+    <line x1="1" y1="22" x2="65" y2="22" stroke="#808080" />
+    <line x1="63" y1="1" x2="63" y2="23" stroke="#808080" />
+    
+    <!-- Logo Windows (4 carrés colorés) -->
+    <rect x="6" y="6" width="5" height="5" fill="#ff4d4d" />
+    <rect x="12" y="6" width="5" height="5" fill="#4dff4d" />
+    <rect x="6" y="12" width="5" height="5" fill="#0080ff" />
+    <rect x="12" y="12" width="5" height="5" fill="#ffff4d" />
+    
+    <text x="23" y="16" class="retro-text-bold">Démarrer</text>
+  </g>
+
+  <!-- Séparateur vertical -->
+  <line x1="75" y1="520" x2="75" y2="544" stroke="#808080" />
+  <line x1="76" y1="520" x2="76" y2="544" stroke="#ffffff" />
+
+  <!-- Fenêtre active dans la barre des tâches -->
+  <g transform="translate(82, 520)">
+    <rect width="130" height="24" fill="#e0e0e0" stroke="#808080" stroke-width="1" />
+    <line x1="0" y1="0" x2="130" y2="0" stroke="#000000" />
+    <line x1="0" y1="0" x2="0" y2="24" stroke="#000000" />
+    <line x1="1" y1="1" x2="129" y2="1" stroke="#808080" />
+    <line x1="1" y1="1" x2="1" y2="23" stroke="#808080" />
+    <rect width="130" height="24" fill="none" stroke="#ffffff" stroke-width="0.5" />
+    
+    <!-- Mini icône document -->
+    <rect x="8" y="7" width="10" height="10" fill="#ffffff" stroke="#000" />
+    <line x1="11" y1="9" x2="15" y2="9" stroke="#000" />
+    <line x1="11" y1="11" x2="15" y2="11" stroke="#000" />
+
+    <text x="24" y="16" class="retro-text-bold">Yvaloski_CV.exe</text>
+  </g>
+
+  <!-- Horloge en bas à droite (Clock) -->
+  <g transform="translate(715, 520)">
+    <!-- Zone enfoncée (Bevel In) -->
+    <rect width="80" height="24" fill="#c0c0c0" stroke="#808080" stroke-width="1" />
+    <line x1="0" y1="0" x2="80" y2="0" stroke="#000000" />
+    <line x1="0" y1="0" x2="0" y2="24" stroke="#000000" />
+    <line x1="79" y1="0" x2="79" y2="24" stroke="#ffffff" />
+    <line x1="0" y1="23" x2="80" y2="23" stroke="#ffffff" />
+
+    <!-- Mini icône son -->
+    <path d="M12,8 L15,8 L18,5 L18,17 L15,14 L12,14 Z" fill="#000000" />
+    <path d="M21,8 C22,9 22,12 21,13" stroke="#000000" stroke-width="1.5" fill="none" />
+
+    <text x="38" y="16" class="retro-text-bold">19:48</text>
+  </g>
+</svg>
