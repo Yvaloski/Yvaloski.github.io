@@ -223,6 +223,36 @@
 
   <!-- 2. FENÊTRES (Windows) -->
 
+  <!-- Fenêtre Bienvenue -->
+  <div class="window" id="win-welcome" style="width: 480px;">
+    <div class="title-bar" onmousedown="dragStart(event, 'win-welcome')">
+      <div class="title-bar-text">Bienvenue dans Windows 98</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="closeWindow('win-welcome')"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div style="display: flex; gap: 15px; align-items: flex-start; padding: 10px;">
+        <img src="https://win98icons.alexmeub.com/icons/png/key_win-4.png" alt="Windows Key" style="width: 48px; height: 48px; flex-shrink: 0;">
+        <div>
+          <h2 style="margin-top: 0; color: #000080; font-size: 14px; font-weight: bold;">Bienvenue sur mon Bureau Virtuel !</h2>
+          <p style="font-size: 11px; margin-top: 5px; line-height: 1.4;">
+            Ce site simule un environnement de bureau Windows 98 interactif pour présenter mes projets et compétences.
+          </p>
+          <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 12px; font-weight: bold;">Comment l'utiliser ?</h3>
+          <ul style="padding-left: 15px; margin: 0; font-size: 11px; line-height: 1.4;">
+            <li><strong>Icônes :</strong> Cliquez sur les icônes à gauche pour ouvrir les répertoires.</li>
+            <li><strong>Fenêtres :</strong> Glissez-déposez via la barre de titre bleue. Fermez-les avec [X] ou réduisez-les.</li>
+            <li><strong>Démarrer :</strong> Le bouton en bas à gauche contient des raccourcis utiles.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; margin-top: 15px; padding-right: 10px;">
+        <button onclick="closeWindow('win-welcome')" style="width: 100px; font-weight: bold;">Commencer</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Fenêtre Poste de travail -->
   <div class="window" id="win-computer">
     <div class="title-bar" onmousedown="dragStart(event, 'win-computer')">
@@ -460,6 +490,11 @@ LinkedIn : https://linkedin.com/in/votre-nom
         activeDrag.style.top = `${e.clientY - offsetY}px`;
       }
     }
+
+    // Démarrage automatique
+    window.addEventListener('DOMContentLoaded', () => {
+      openWindow('win-welcome');
+    });
 
     function dragEnd() {
       activeDrag = null;
