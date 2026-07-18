@@ -15,7 +15,7 @@
       user-select: none;
     }
     html {
-      background-color: #0d021a;
+      background-color: #000000;
     }
     body {
       margin: 0;
@@ -27,59 +27,56 @@
       overflow: hidden;
     }
 
-    /* Surcharges CSS Cyberpunk */
+    /* Surcharges CSS Cyberpunk Noir & Vert (Matrix) */
     .title-bar {
-      background: linear-gradient(90deg, #7b00ff, #ff00aa) !important;
+      background: #000000 !important;
+      border: 1px solid #00ff00 !important;
     }
     .title-bar-text {
-      color: #00ffff !important;
+      color: #00ff00 !important;
       font-weight: bold;
-      text-shadow: 0 0 3px #00ffff;
+      text-shadow: 0 0 5px #00ff00;
     }
     #taskbar {
-      background-color: #120224 !important;
-      border-top: 2px solid #ff00aa !important;
-      box-shadow: 0 -2px 10px rgba(255, 0, 170, 0.5) !important;
+      background-color: #000000 !important;
+      border-top: 2px solid #00ff00 !important;
+      box-shadow: 0 -2px 10px rgba(0, 255, 0, 0.4) !important;
     }
     #start-btn {
-      background-color: #26004d !important;
-      color: #00ffff !important;
-      border: 1px solid #00ffff !important;
-      box-shadow: 0 0 5px #00ffff !important;
+      background-color: #000000 !important;
+      color: #00ff00 !important;
+      border: 1px solid #00ff00 !important;
+      box-shadow: 0 0 5px #00ff00 !important;
     }
     #sys-tray {
-      background-color: #0d021a !important;
-      border-color: #7b00ff !important;
-      color: #ff00aa !important;
-      text-shadow: 0 0 3px #ff00aa;
+      background-color: #000000 !important;
+      border-color: #00ff00 !important;
+      color: #00ff00 !important;
+      text-shadow: 0 0 3px #00ff00;
     }
     .task-tab {
-      background-color: #26004d !important;
-      color: #00ffff !important;
-      border: 1px solid #7b00ff !important;
+      background-color: #000000 !important;
+      color: #00ff00 !important;
+      border: 1px solid #00ff00 !important;
     }
     .task-tab.active {
-      background-color: #ff00aa !important;
-      color: #0d021a !important;
-      border: 1px solid #ff00aa !important;
+      background-color: #00ff00 !important;
+      color: #000000 !important;
+      border: 1px solid #00ff00 !important;
     }
     .window {
-      border: 2px solid #7b00ff !important;
-      box-shadow: 0 0 15px rgba(123, 0, 255, 0.6) !important;
+      border: 2px solid #00ff00 !important;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.4) !important;
+      background-color: #000000 !important;
+      color: #00ff00 !important;
     }
-
-    /* Desktop Icons Container */
-    #desktop {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: calc(100% - 40px);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-content: flex-start;
-      gap: 25px;
+    .window-body {
+      color: #00ff00 !important;
+    }
+    textarea {
+      background-color: #000000 !important;
+      color: #00ff00 !important;
+      text-shadow: 0 0 2px #00ff00;
     }
 
     /* Individual Icon */
@@ -90,8 +87,8 @@
       align-items: center;
       text-align: center;
       cursor: pointer;
-      color: #00ffff !important;
-      text-shadow: 0 0 5px #00ffff, 1px 1px 1px black !important;
+      color: #00ff00 !important;
+      text-shadow: 0 0 5px #00ff00, 1px 1px 1px black !important;
       font-size: 11px;
       padding: 5px;
       border: 1px dashed transparent;
@@ -102,11 +99,11 @@
       margin-bottom: 5px;
     }
     .desktop-icon:hover {
-      background-color: rgba(0, 255, 255, 0.1);
+      background-color: rgba(0, 255, 0, 0.1);
     }
     .desktop-icon:active, .desktop-icon.selected {
-      background-color: rgba(255, 0, 170, 0.3) !important;
-      border: 1px dashed #ff00aa !important;
+      background-color: rgba(0, 255, 0, 0.2) !important;
+      border: 1px dashed #00ff00 !important;
     }
 
     /* Windows Styling */
@@ -1044,13 +1041,13 @@ GitHub : https://github.com/Yval
           x: Math.random() * width - width / 2,
           y: Math.random() * height - height / 2,
           z: Math.random() * width,
-          color: i % 12 === 0 ? '#00ffff' : (i % 8 === 0 ? '#ff00aa' : '#7b00ff')
+          color: i % 10 === 0 ? '#ffffff' : (i % 3 === 0 ? '#00ff00' : '#007700')
         });
       }
 
       function animate() {
-        // Remplir d'abord avec un fond noir violet cyberpunk opaque
-        ctx.fillStyle = 'rgba(13, 2, 26, 0.2)'; 
+        // Remplir d'abord avec un fond noir Matrix opaque
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; 
         ctx.fillRect(0, 0, width, height);
 
         for (let i = 0; i < numStars; i++) {
