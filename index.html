@@ -19,7 +19,7 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background-color: #000000; /* Black */
+      background-color: #008080; /* Windows 98 Green/Teal */
       font-family: "MS Sans Serif", Geneva, sans-serif;
       overflow: hidden;
     }
@@ -39,7 +39,7 @@
 
     /* Individual Icon */
     .desktop-icon {
-      width: 80px;
+      width: 85px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -48,15 +48,20 @@
       color: white;
       text-shadow: 1px 1px 1px black;
       font-size: 11px;
+      padding: 5px;
+      border: 1px dashed transparent;
     }
     .desktop-icon img {
       width: 32px;
       height: 32px;
       margin-bottom: 5px;
     }
-    .desktop-icon:active span {
+    .desktop-icon:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .desktop-icon:active, .desktop-icon.selected {
       background-color: #000080;
-      outline: 1px dotted #ffff00;
+      border: 1px dashed #ffff00;
     }
 
     /* Windows Styling */
@@ -64,12 +69,18 @@
       position: absolute;
       width: 450px;
       min-height: 250px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
       display: none; /* Hidden by default */
       z-index: 10;
     }
     .window.active {
       z-index: 50;
+    }
+    .window.maximized {
+      width: 100% !important;
+      height: calc(100% - 40px) !important;
+      left: 0 !important;
+      top: 0 !important;
     }
     .title-bar {
       cursor: move;
@@ -77,7 +88,10 @@
     .window-body {
       margin: 8px;
       overflow-y: auto;
-      max-height: 350px;
+      max-height: 400px;
+    }
+    .window.maximized .window-body {
+      max-height: calc(100% - 45px);
     }
 
     /* Taskbar */
@@ -103,7 +117,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      min-width: 80px;
+      min-width: 85px;
       height: 28px;
     }
     #start-btn img {
@@ -116,7 +130,7 @@
       position: absolute;
       bottom: 40px;
       left: 2px;
-      width: 180px;
+      width: 200px;
       background-color: #c0c0c0;
       border: 2px solid;
       border-color: #fff #808080 #808080 #fff;
@@ -162,6 +176,10 @@
       text-align: left;
       font-weight: bold;
     }
+    .task-tab.active {
+      box-shadow: inset 1px 1px 0px #000, inset -1px -1px 0px #dfdfdf;
+      background-color: #e0e0e0;
+    }
 
     /* System Tray / Clock */
     #sys-tray {
@@ -196,28 +214,92 @@
       height: 32px;
       margin-bottom: 5px;
     }
+
+    /* Minesweeper Grid Custom Style */
+    .mine-cell {
+      width: 20px;
+      height: 20px;
+      border: 2px solid;
+      border-color: #fff #808080 #808080 #fff;
+      background-color: #c0c0c0;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      line-height: 16px;
+      cursor: pointer;
+    }
+    .mine-cell.revealed {
+      border: 1px solid #808080;
+      background-color: #c0c0c0;
+    }
+    .mine-cell.mine {
+      background-color: red;
+    }
+    .mine-cell.flagged {
+      background-color: #c0c0c0;
+    }
+
+    /* Winamp Simulation Styles */
+    .winamp-title {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .winamp-display {
+      background-color: #000;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 10px;
+      border: 2px solid #808080;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .winamp-controls button {
+      min-width: 45px;
+      margin: 2px;
+    }
   </style>
 </head>
 <body>
 
   <!-- 1. BUREAU (Desktop) -->
-  <div id="desktop">
+  <div id="desktop" onclick="deselectAllIcons(event)">
     <!-- Icône Poste de travail -->
-    <div class="desktop-icon" onclick="openWindow('win-computer')">
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-computer')" ondblclick="openWindow('win-computer')">
       <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer">
       <span>Poste de travail</span>
     </div>
 
     <!-- Icône Mes Projets -->
-    <div class="desktop-icon" onclick="openWindow('win-projects')">
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-projects')" ondblclick="openWindow('win-projects')">
       <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png" alt="My Projects">
       <span>Mes Projets</span>
     </div>
 
     <!-- Icône CV (Notepad) -->
-    <div class="desktop-icon" onclick="openWindow('win-resume')">
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-resume')" ondblclick="openWindow('win-resume')">
       <img src="https://win98icons.alexmeub.com/icons/png/notepad-1.png" alt="Notepad CV">
       <span>CV_Readme.txt</span>
+    </div>
+
+    <!-- Icône Winamp (Lecteur Audio) -->
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-winamp')" ondblclick="openWindow('win-winamp')">
+      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="Winamp">
+      <span>Winamp.exe</span>
+    </div>
+
+    <!-- Icône Démineur -->
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-mines')" ondblclick="openWindow('win-mines')">
+      <img src="https://win98icons.alexmeub.com/icons/png/game_mine_sweeper-0.png" alt="Minesweeper">
+      <span>Démineur.exe</span>
+    </div>
+
+    <!-- Icône Corbeille -->
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-trash')" ondblclick="openTrash()">
+      <img id="trash-icon-img" src="https://win98icons.alexmeub.com/icons/png/trash_empty-4.png" alt="Trash">
+      <span>Corbeille</span>
     </div>
   </div>
 
@@ -241,9 +323,9 @@
           </p>
           <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 12px; font-weight: bold;">Comment l'utiliser ?</h3>
           <ul style="padding-left: 15px; margin: 0; font-size: 11px; line-height: 1.4;">
-            <li><strong>Icônes :</strong> Cliquez sur les icônes à gauche pour ouvrir les répertoires.</li>
-            <li><strong>Fenêtres :</strong> Glissez-déposez via la barre de titre bleue. Fermez-les avec [X] ou réduisez-les.</li>
-            <li><strong>Démarrer :</strong> Le bouton en bas à gauche contient des raccourcis utiles.</li>
+            <li><strong>Icônes :</strong> Double-cliquez pour ouvrir.</li>
+            <li><strong>Fenêtres :</strong> Glissez-déposez via la barre de titre.</li>
+            <li><strong>Audio :</strong> Lancez <strong>Winamp.exe</strong> pour écouter de la musique chiptune retro synthétisée en temps réel !</li>
           </ul>
         </div>
       </div>
@@ -259,7 +341,7 @@
       <div class="title-bar-text">Poste de travail</div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" onclick="minimizeWindow('win-computer')"></button>
-        <button aria-label="Maximize"></button>
+        <button aria-label="Maximize" onclick="toggleMaximize('win-computer')"></button>
         <button aria-label="Close" onclick="closeWindow('win-computer')"></button>
       </div>
     </div>
@@ -279,7 +361,7 @@
       <div class="title-bar-text">C:\Projets</div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" onclick="minimizeWindow('win-projects')"></button>
-        <button aria-label="Maximize"></button>
+        <button aria-label="Maximize" onclick="toggleMaximize('win-projects')"></button>
         <button aria-label="Close" onclick="closeWindow('win-projects')"></button>
       </div>
     </div>
@@ -316,7 +398,7 @@
       <div class="title-bar-text">CV_Readme.txt - Notepad</div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" onclick="minimizeWindow('win-resume')"></button>
-        <button aria-label="Maximize"></button>
+        <button aria-label="Maximize" onclick="toggleMaximize('win-resume')"></button>
         <button aria-label="Close" onclick="closeWindow('win-resume')"></button>
       </div>
     </div>
@@ -328,7 +410,7 @@
 
 COMPETENCES DU SYSTEME :
 ------------------------
-- Front-End/Mobile : Kotlin (Android), TS / JS (Angular)
+- Front-End/Mobile : Kotlin (Android SDK), TS / JS (Angular)
 - Back-End         : PHP (Symfony), Java (Spring Boot)
 - DevOps / Systèmes: Docker, Git, Linux (Debian)
 
@@ -338,21 +420,69 @@ PROJETS ET EXPERIENCES :
 - ChatApp          : Messagerie cryptée Android
 - mydesk           : Bureau virtuel web interactif
 - Eni_Encheres     : Site d'enchères en Java
-- spring-boot-api  : API REST Backend (Spring Boot)
-- angular-dashboard: Dashboard Frontend (Angular)
+- task-manager     : Gestionnaire de tâches moderne
 
 CONTACT :
 ---------
-Email    : votre.email@example.com
-LinkedIn : https://linkedin.com/in/votre-nom
+GitHub : https://github.com/Yvaloski
       </textarea>
+    </div>
+  </div>
+
+  <!-- Fenêtre Winamp (Lecteur Audio) -->
+  <div class="window" id="win-winamp" style="width: 320px;">
+    <div class="title-bar" onmousedown="dragStart(event, 'win-winamp')">
+      <div class="title-bar-text">Winamp - Retro Player</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('win-winamp')"></button>
+        <button aria-label="Close" onclick="closeWindow('win-winamp')"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="winamp-display">
+        <div id="winamp-song-title">Sélectionnez un titre...</div>
+        <div id="winamp-time" style="font-size: 20px; font-weight: bold; margin-top: 5px;">00:00</div>
+      </div>
+      <div class="winamp-controls" style="text-align: center; margin-bottom: 10px;">
+        <button onclick="playMusic()">PLAY</button>
+        <button onclick="pauseMusic()">PAUSE</button>
+        <button onclick="stopMusic()">STOP</button>
+      </div>
+      <div style="font-size: 11px;">
+        <label for="track-select">Pistes :</label>
+        <select id="track-select" style="width: 100%; margin-top: 5px;" onchange="changeTrack()">
+          <option value="tetris">Theme Tetris (Chiptune)</option>
+          <option value="mario">Theme Super Mario (Chiptune)</option>
+          <option value="startup">Windows 98 Classic Bell</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fenêtre Démineur -->
+  <div class="window" id="win-mines" style="width: 240px;">
+    <div class="title-bar" onmousedown="dragStart(event, 'win-mines')">
+      <div class="title-bar-text">Démineur.exe</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('win-mines')"></button>
+        <button aria-label="Close" onclick="closeWindow('win-mines')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="display: flex; flex-direction: column; align-items: center;">
+      <div style="display: flex; justify-content: space-between; width: 100%; max-width: 190px; background-color: #c0c0c0; border: 2px solid; border-color: #808080 #fff #fff #808080; padding: 4px; margin-bottom: 8px;">
+        <span id="mines-left" style="background: black; color: red; font-family: monospace; font-size: 16px; padding: 0 4px;">010</span>
+        <button id="mines-smiley" onclick="initMinesweeper()" style="font-size: 14px; padding: 0 5px; height: 24px;">🙂</button>
+        <span id="mines-timer" style="background: black; color: red; font-family: monospace; font-size: 16px; padding: 0 4px;">000</span>
+      </div>
+      <div id="mines-grid" style="display: grid; grid-template-columns: repeat(9, 20px); grid-template-rows: repeat(9, 20px); gap: 1px; background-color: #808080; border: 2px solid; border-color: #808080 #fff #fff #808080; padding: 2px;">
+      </div>
     </div>
   </div>
 
   <!-- 3. BARRE DES TÂCHES (Taskbar) -->
   <div id="taskbar">
     <!-- Menu Démarrer -->
-    <button id="start-btn" onclick="toggleStartMenu()">
+    <button id="start-btn" onclick="toggleStartMenu(event)">
       <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows Logo">
       Démarrer
     </button>
@@ -362,7 +492,7 @@ LinkedIn : https://linkedin.com/in/votre-nom
 
     <!-- Clock & Sys Tray -->
     <div id="sys-tray">
-      <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays-0.png" alt="Sound" style="width: 16px; height: 16px;">
+      <img src="https://win98icons.alexmeub.com/icons/png/loudspeaker_rays-0.png" alt="Sound" style="width: 16px; height: 16px; cursor: pointer;" onclick="playStartupSound()">
       <span id="clock">12:00</span>
     </div>
   </div>
@@ -374,12 +504,16 @@ LinkedIn : https://linkedin.com/in/votre-nom
         <img src="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png" width="16" height="16">
         GitHub Profile
       </li>
-      <li onclick="alert('Chargement des pilotes terminés avec succès !')">
-        <img src="https://win98icons.alexmeub.com/icons/png/gears-0.png" width="16" height="16">
-        Panneau de configuration
+      <li onclick="openWindow('win-winamp')">
+        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" width="16" height="16">
+        Winamp Player
+      </li>
+      <li onclick="openWindow('win-mines')">
+        <img src="https://win98icons.alexmeub.com/icons/png/game_mine_sweeper-0.png" width="16" height="16">
+        Jeu Démineur
       </li>
       <hr>
-      <li onclick="alert('Arrêt impossible : L\'IA est omniprésente.')">
+      <li onclick="alert('Arrêt impossible : L\'IA contrôle le système.')">
         <img src="https://win98icons.alexmeub.com/icons/png/key_win-2.png" width="16" height="16">
         Arrêter le système...
       </li>
@@ -398,8 +532,35 @@ LinkedIn : https://linkedin.com/in/votre-nom
     setInterval(updateClock, 1000);
     updateClock();
 
+    // Sélection des icônes
+    function selectIcon(e, id) {
+      e.stopPropagation();
+      deselectAllIcons();
+      e.currentTarget.classList.add('selected');
+    }
+    function deselectAllIcons() {
+      document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.classList.remove('selected');
+      });
+    }
+
+    // Gestion de la Corbeille
+    let trashEmpty = true;
+    function openTrash() {
+      if (trashEmpty) {
+        alert("La Corbeille est vide !");
+      } else {
+        if (confirm("Voulez-vous vider la Corbeille ?")) {
+          trashEmpty = true;
+          document.getElementById('trash-icon-img').src = "https://win98icons.alexmeub.com/icons/png/trash_empty-4.png";
+          playBeep(150, 0.15);
+        }
+      }
+    }
+
     // Gestion Start Menu
-    function toggleStartMenu() {
+    function toggleStartMenu(e) {
+      e.stopPropagation();
       const menu = document.getElementById('start-menu');
       menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
@@ -410,20 +571,21 @@ LinkedIn : https://linkedin.com/in/votre-nom
     });
 
     // Gestion Fenêtres
-    const openWindows = {};
+    const windowStates = {};
 
     function openWindow(id) {
       const win = document.getElementById(id);
       win.style.display = 'block';
       
       // Placer au centre par défaut
-      if (!win.style.left) {
+      if (!win.style.left && !win.classList.contains('maximized')) {
         win.style.left = `${(window.innerWidth - win.offsetWidth) / 2}px`;
         win.style.top = `${(window.innerHeight - win.offsetHeight - 40) / 2}px`;
       }
       
       bringToFront(id);
       updateTaskbar();
+      playBeep(600, 0.05);
     }
 
     function closeWindow(id) {
@@ -433,11 +595,36 @@ LinkedIn : https://linkedin.com/in/votre-nom
 
     function minimizeWindow(id) {
       document.getElementById(id).style.display = 'none';
+      updateTaskbar();
+    }
+
+    function toggleMaximize(id) {
+      const win = document.getElementById(id);
+      if (win.classList.contains('maximized')) {
+        win.classList.remove('maximized');
+        // restaurer la position
+        if (windowStates[id]) {
+          win.style.left = windowStates[id].left;
+          win.style.top = windowStates[id].top;
+        }
+      } else {
+        windowStates[id] = {
+          left: win.style.left,
+          top: win.style.top
+        };
+        win.classList.add('maximized');
+        win.style.left = '0';
+        win.style.top = '0';
+      }
     }
 
     function bringToFront(id) {
       document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      const activeWin = document.getElementById(id);
+      if (activeWin) {
+        activeWin.classList.add('active');
+      }
+      updateTaskbar();
     }
 
     function updateTaskbar() {
@@ -450,7 +637,7 @@ LinkedIn : https://linkedin.com/in/votre-nom
           const title = win.querySelector('.title-bar-text').textContent;
           
           const btn = document.createElement('button');
-          btn.className = 'task-tab';
+          btn.className = 'task-tab' + (win.classList.contains('active') ? ' active' : '');
           btn.textContent = title;
           btn.onclick = () => {
             if (win.style.display === 'none' || !win.classList.contains('active')) {
@@ -458,6 +645,8 @@ LinkedIn : https://linkedin.com/in/votre-nom
               bringToFront(id);
             } else {
               win.style.display = 'none';
+              win.classList.remove('active');
+              updateTaskbar();
             }
           };
           tasks.appendChild(btn);
@@ -471,7 +660,10 @@ LinkedIn : https://linkedin.com/in/votre-nom
     let offsetY = 0;
 
     function dragStart(e, id) {
-      activeDrag = document.getElementById(id);
+      const win = document.getElementById(id);
+      if (win.classList.contains('maximized')) return; // pas de drag si maximisé
+      
+      activeDrag = win;
       bringToFront(id);
       offsetX = e.clientX - activeDrag.offsetLeft;
       offsetY = e.clientY - activeDrag.offsetTop;
@@ -487,16 +679,313 @@ LinkedIn : https://linkedin.com/in/votre-nom
       }
     }
 
-    // Démarrage automatique
-    window.addEventListener('DOMContentLoaded', () => {
-      openWindow('win-welcome');
-    });
-
     function dragEnd() {
       activeDrag = null;
       document.removeEventListener('mousemove', dragMove);
       document.removeEventListener('mouseup', dragEnd);
     }
+
+    // WEB AUDIO API : Synthèse Sonore Rétro
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(freq, duration) {
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playStartupSound() {
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50]; // Accord majeur harmonieux
+        
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          
+          osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+          
+          gain.gain.setValueAtTime(0, now);
+          gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.08 + 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 2.0);
+          
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 2.2);
+        });
+      } catch(e) {}
+    }
+
+    // WINAMP LOGIC & CHIPTUNE SYNTH
+    let musicInterval = null;
+    let musicTempo = 150; // ms par note
+    let musicStep = 0;
+    let isPlaying = false;
+    let trackName = 'tetris';
+
+    const tracks = {
+      tetris: [
+        659, 494, 523, 587, 523, 494, 440, 440, 523, 659, 587, 523, 494, 523, 587, 659,
+        523, 440, 440, 0, 587, 698, 880, 784, 698, 659, 523, 659, 587, 523, 494, 494,
+        523, 587, 659, 523, 440, 440
+      ],
+      mario: [
+        660, 660, 0, 660, 0, 510, 660, 0, 770, 0, 0, 0, 380, 0, 0, 0,
+        510, 0, 0, 380, 0, 0, 320, 0, 0, 440, 0, 480, 0, 450, 440, 0,
+        380, 660, 770, 880, 0, 690, 770, 0, 660, 0, 510, 580, 490
+      ],
+      startup: [
+        261, 329, 392, 523, 659, 783, 1046
+      ]
+    };
+
+    function playMusic() {
+      if (isPlaying) return;
+      initAudio();
+      isPlaying = true;
+      document.getElementById('winamp-song-title').textContent = `Playing: ${trackName.toUpperCase()}`;
+      
+      musicInterval = setInterval(() => {
+        const notes = tracks[trackName];
+        const freq = notes[musicStep % notes.length];
+        if (freq > 0) {
+          playBeep(freq, 0.2);
+        }
+        
+        // Update Time
+        const totalSecs = Math.floor((musicStep * musicTempo) / 1000);
+        const mins = String(Math.floor(totalSecs / 60)).padStart(2, '0');
+        const secs = String(totalSecs % 60).padStart(2, '0');
+        document.getElementById('winamp-time').textContent = `${mins}:${secs}`;
+        
+        musicStep++;
+      }, musicTempo);
+    }
+
+    function pauseMusic() {
+      clearInterval(musicInterval);
+      isPlaying = false;
+      document.getElementById('winamp-song-title').textContent = "Paused";
+    }
+
+    function stopMusic() {
+      clearInterval(musicInterval);
+      isPlaying = false;
+      musicStep = 0;
+      document.getElementById('winamp-time').textContent = "00:00";
+      document.getElementById('winamp-song-title').textContent = "Stopped";
+    }
+
+    function changeTrack() {
+      stopMusic();
+      trackName = document.getElementById('track-select').value;
+      if (trackName === 'startup') {
+        musicTempo = 250;
+      } else {
+        musicTempo = 150;
+      }
+    }
+
+    // JEU DEMINEUR (MINESWEEPER)
+    const minesSize = 9;
+    const minesCount = 10;
+    let minesGrid = [];
+    let revealedCount = 0;
+    let minePositions = [];
+    let isGameOver = false;
+    let minesTimerInterval = null;
+    let minesTime = 0;
+
+    function initMinesweeper() {
+      isGameOver = false;
+      revealedCount = 0;
+      minesTime = 0;
+      document.getElementById('mines-smiley').textContent = '🙂';
+      document.getElementById('mines-left').textContent = String(minesCount).padStart(3, '0');
+      document.getElementById('mines-timer').textContent = '000';
+      clearInterval(minesTimerInterval);
+      
+      // Start Timer on first click
+      minesTimerInterval = setInterval(() => {
+        if (!isGameOver && minesTime < 999) {
+          minesTime++;
+          document.getElementById('mines-timer').textContent = String(minesTime).padStart(3, '0');
+        }
+      }, 1000);
+
+      // Générer Grid
+      const gridContainer = document.getElementById('mines-grid');
+      gridContainer.innerHTML = '';
+      minesGrid = Array(minesSize).fill(null).map(() => Array(minesSize).fill(0));
+      
+      // Mines
+      minePositions = [];
+      while(minePositions.length < minesCount) {
+        const r = Math.floor(Math.random() * minesSize);
+        const c = Math.floor(Math.random() * minesSize);
+        if (!minePositions.some(p => p.r === r && p.c === c)) {
+          minePositions.push({r, c});
+          minesGrid[r][c] = 'M';
+        }
+      }
+
+      // Calculer Nombres adjacents
+      for(let r=0; r<minesSize; r++) {
+        for(let c=0; c<minesSize; c++) {
+          if (minesGrid[r][c] === 'M') continue;
+          let count = 0;
+          for(let dr=-1; dr<=1; dr++) {
+            for(let dc=-1; dc<=1; dc++) {
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr >= 0 && nr < minesSize && nc >= 0 && nc < minesSize) {
+                if (minesGrid[nr][nc] === 'M') count++;
+              }
+            }
+          }
+          minesGrid[r][c] = count;
+        }
+      }
+
+      // Render
+      for(let r=0; r<minesSize; r++) {
+        for(let c=0; c<minesSize; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'mine-cell';
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          
+          cell.addEventListener('click', () => clickCell(r, c));
+          cell.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            flagCell(cell);
+          });
+          
+          gridContainer.appendChild(cell);
+        }
+      }
+    }
+
+    function clickCell(r, c) {
+      if (isGameOver) return;
+      
+      const idx = r * minesSize + c;
+      const cell = document.getElementById('mines-grid').children[idx];
+      if (cell.classList.contains('revealed') || cell.classList.contains('flagged')) return;
+      
+      const val = minesGrid[r][c];
+      if (val === 'M') {
+        // Boom!
+        cell.classList.add('mine');
+        cell.textContent = '💣';
+        gameOver(false);
+      } else {
+        revealCell(r, c);
+        checkWin();
+      }
+    }
+
+    function revealCell(r, c) {
+      const idx = r * minesSize + c;
+      const cell = document.getElementById('mines-grid').children[idx];
+      if (cell.classList.contains('revealed')) return;
+      
+      cell.classList.add('revealed');
+      cell.style.borderColor = '#808080';
+      const val = minesGrid[r][c];
+      
+      if (val > 0) {
+        cell.textContent = val;
+        // Couleurs classiques Démineur
+        const colors = ['', 'blue', 'green', 'red', 'darkblue', 'darkred', 'teal', 'black', 'gray'];
+        cell.style.color = colors[val];
+      } else {
+        // Étendre aux cellules vides adjacentes
+        for(let dr=-1; dr<=1; dr++) {
+          for(let dc=-1; dc<=1; dc++) {
+            const nr = r + dr;
+            const nc = c + dc;
+            if (nr >= 0 && nr < minesSize && nc >= 0 && nc < minesSize) {
+              revealCell(nr, nc);
+            }
+          }
+        }
+      }
+      revealedCount++;
+    }
+
+    function flagCell(cell) {
+      if (isGameOver || cell.classList.contains('revealed')) return;
+      
+      if (cell.classList.contains('flagged')) {
+        cell.classList.remove('flagged');
+        cell.textContent = '';
+      } else {
+        cell.classList.add('flagged');
+        cell.textContent = '🚩';
+        cell.style.color = 'red';
+      }
+    }
+
+    function checkWin() {
+      if (revealedCount === (minesSize * minesSize - minesCount)) {
+        gameOver(true);
+      }
+    }
+
+    function gameOver(isWin) {
+      isGameOver = true;
+      clearInterval(minesTimerInterval);
+      
+      if (isWin) {
+        document.getElementById('mines-smiley').textContent = '😎';
+        alert('Félicitations ! Vous avez gagné !');
+      } else {
+        document.getElementById('mines-smiley').textContent = '😵';
+        // Révéler toutes les mines
+        minePositions.forEach(p => {
+          const idx = p.r * minesSize + p.c;
+          const cell = document.getElementById('mines-grid').children[idx];
+          cell.classList.add('mine');
+          cell.textContent = '💣';
+        });
+      }
+    }
+
+    // Lancement et audio au premier clic utilisateur
+    window.addEventListener('DOMContentLoaded', () => {
+      openWindow('win-welcome');
+      initMinesweeper();
+      
+      // Auto-play startup sound on first user gesture
+      const startTrigger = () => {
+        playStartupSound();
+        window.removeEventListener('click', startTrigger);
+      };
+      window.addEventListener('click', startTrigger);
+    });
   </script>
 </body>
 </html>
