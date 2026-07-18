@@ -1,4 +1,4 @@
-# 💻 Yval's Retro Workstation
+# 💻 Projects
 
 ---
 
