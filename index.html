@@ -359,29 +359,29 @@
   <!-- Fenêtre Bienvenue -->
   <div class="window" id="win-welcome" style="width: 480px;">
     <div class="title-bar" onmousedown="dragStart(event, 'win-welcome')">
-      <div class="title-bar-text">Bienvenue dans Windows 98</div>
+      <div class="title-bar-text">Console d'accueil - Matrix Shell</div>
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="closeWindow('win-welcome')"></button>
       </div>
     </div>
     <div class="window-body">
       <div style="display: flex; gap: 15px; align-items: flex-start; padding: 10px;">
-        <img src="https://win98icons.alexmeub.com/icons/png/key_win-4.png" alt="Windows Key" style="width: 48px; height: 48px; flex-shrink: 0;">
+        <img src="https://win98icons.alexmeub.com/icons/png/console_prompt-0.png" alt="Console Icon" style="width: 48px; height: 48px; flex-shrink: 0;">
         <div>
-          <h2 style="margin-top: 0; color: #000080; font-size: 14px; font-weight: bold;">Bienvenue sur mon Bureau Virtuel !</h2>
+          <h2 style="margin-top: 0; color: #00cc00; font-size: 14px; font-weight: bold;">Initialisation du Bureau Virtuel...</h2>
           <p style="font-size: 11px; margin-top: 5px; line-height: 1.4;">
-            Ce site simule un environnement de bureau Windows 98 interactif pour présenter mes projets et compétences.
+            Ce site simule un environnement de bureau virtuel rétro-futuriste pour présenter mes projets et mes compétences.
           </p>
-          <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 12px; font-weight: bold;">Comment l'utiliser ?</h3>
+          <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 12px; font-weight: bold;">Guide de navigation :</h3>
           <ul style="padding-left: 15px; margin: 0; font-size: 11px; line-height: 1.4;">
-            <li><strong>Icônes :</strong> Double-cliquez pour ouvrir.</li>
-            <li><strong>Fenêtres :</strong> Glissez-déposez via la barre de titre.</li>
-            <li><strong>Audio :</strong> Lancez <strong>Winamp.exe</strong> pour écouter de la musique chiptune retro synthétisée en temps réel !</li>
+            <li><strong>Icônes :</strong> Double-cliquez pour exécuter un programme ou ouvrir un répertoire.</li>
+            <li><strong>Fenêtres :</strong> Glissez-déposez via la barre de titre. Maximisez-les si besoin.</li>
+            <li><strong>Command.com :</strong> Ouvrez-le pour tester les invites de commandes système (tentez la commande `matrix`).</li>
           </ul>
         </div>
       </div>
       <div style="display: flex; justify-content: flex-end; margin-top: 15px; padding-right: 10px;">
-        <button onclick="closeWindow('win-welcome')" style="width: 100px; font-weight: bold;">Commencer</button>
+        <button onclick="closeWindow('win-welcome')" style="width: 100px; font-weight: bold; color: #00cc00; background: #000; border: 1px solid #00cc00;">Entrer</button>
       </div>
     </div>
   </div>
@@ -397,8 +397,8 @@
       </div>
     </div>
     <div class="window-body" style="background-color: #000000; color: #00cc00; font-family: monospace; padding: 10px; height: calc(100% - 30px); margin: 0; overflow-y: auto; display: flex; flex-direction: column;" onclick="focusTerminalInput()">
-      <div id="terminal-output" style="flex-grow: 1; white-space: pre-wrap; font-size: 12px; line-height: 1.4; margin-bottom: 5px;">Microsoft(R) Windows 98
-(C)Copyright Microsoft Corp 1981-1998.
+      <div id="terminal-output" style="flex-grow: 1; white-space: pre-wrap; font-size: 12px; line-height: 1.4; margin-bottom: 5px;">Matrix Command Prompt (v1.0)
+(C)Copyright Yval Corp 1999-2026.
 
 Tapez 'help' pour voir les commandes disponibles.
 
@@ -422,7 +422,7 @@ Tapez 'help' pour voir les commandes disponibles.
     </div>
     <div class="window-body">
       <h3 style="margin-top: 0;">Yval - Workstation info</h3>
-      <p><strong>OS :</strong> Windows 98 Second Edition</p>
+      <p><strong>OS :</strong> Matrix OS v1.0</p>
       <p><strong>Processeur :</strong> Intel Pentium III (Simulé via Ollama)</p>
       <p><strong>Mémoire :</strong> 128 Mo de RAM</p>
       <hr>
