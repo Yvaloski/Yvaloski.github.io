@@ -237,7 +237,7 @@ COMPETENCES DU SYSTEME :
 
 CONTACT :
 ---------
-GitHub : https://github.com/Yval`
+GitHub : https://github.com/Yvaloski`
     };
 
     let matrixRainInterval = null;
