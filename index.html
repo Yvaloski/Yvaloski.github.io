@@ -15,7 +15,7 @@
       user-select: none;
     }
     html {
-      background-color: #008080;
+      background-color: #000000;
     }
     body {
       margin: 0;
@@ -1008,8 +1008,8 @@ GitHub : https://github.com/Yval
       }
 
       function animate() {
-        // Remplir d'abord avec un fond vert canard opaque pour éviter que le noir du body transparent ne se voie
-        ctx.fillStyle = 'rgba(0, 128, 128, 0.2)'; 
+        // Remplir d'abord avec un fond noir pour l'écran de veille classique
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; 
         ctx.fillRect(0, 0, width, height);
 
         for (let i = 0; i < numStars; i++) {
