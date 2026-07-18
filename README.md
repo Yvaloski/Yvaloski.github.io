@@ -2,27 +2,27 @@
 
 ---
 
-### 📂 Explorateur de fichiers (Raccourcis cliquables)
+### 📂 File Explorer (Clickable shortcuts)
 
 <table>
   <tr>
     <td width="50%">
-      <strong>📁 Mes Documents (Projets)</strong>
+      <strong>📁 My Documents (Projects)</strong>
       <ul>
-        <li>⚡ <a href="https://github.com/Yvaloski/apex-assist">apex-assist</a> — Assistant IA personnel (TS)</li>
-        <li>💬 <a href="https://github.com/Yvaloski/ChatApp">ChatApp</a> — Chat mobile privé (Kotlin)</li>
-        <li>🖥️ <a href="https://github.com/Yvaloski/mydesk">mydesk</a> — Bureau virtuel web (EJS)</li>
-        <li>🛍️ <a href="https://github.com/Yvaloski/Eni_Encheres">Eni_Encheres</a> — Plateforme d'enchères (Java)</li>
-        <li>☕ <a href="#">spring-boot-api</a> — API REST Backend (Spring Boot)</li>
+        <li>⚡ <a href="https://github.com/Yvaloski/apex-assist">apex-assist</a> — Personal AI Assistant (TS)</li>
+        <li>💬 <a href="https://github.com/Yvaloski/ChatApp">ChatApp</a> — Private mobile chat (Kotlin)</li>
+        <li>🖥️ <a href="https://github.com/Yvaloski/mydesk">mydesk</a> — Web virtual desktop (EJS)</li>
+        <li>🛍️ <a href="https://github.com/Yvaloski/Eni_Encheres">Eni_Encheres</a> — Auction platform (Java)</li>
+        <li>☕ <a href="#">spring-boot-api</a> — REST API Backend (Spring Boot)</li>
         <li>🅰️ <a href="#">angular-dashboard</a> — Dashboard Frontend SPA (Angular)</li>
       </ul>
     </td>
     <td width="50%">
-      <strong>⚙️ Panneau de configuration (Compétences)</strong>
+      <strong>⚙️ Control Panel (Skills)</strong>
       <ul>
-        <li><strong>Langages :</strong> Kotlin, Java, PHP, TypeScript/JS, Python</li>
-        <li><strong>Frameworks :</strong> Spring Boot, Angular, Symfony, Android SDK</li>
-        <li><strong>DevOps :</strong> Docker, Git, Bash, Linux Debian</li>
+        <li><strong>Languages:</strong> Kotlin, Java, PHP, TypeScript/JS, Python</li>
+        <li><strong>Frameworks:</strong> Spring Boot, Angular, Symfony, Android SDK</li>
+        <li><strong>DevOps:</strong> Docker, Git, Bash, Linux Debian</li>
       </ul>
     </td>
   </tr>
@@ -30,11 +30,11 @@
 
 ---
 
-### ✉️ Me contacter
+### ✉️ Contact Me
 
-*   **LinkedIn** : [Mon Profil](https://linkedin.com/in/votre-nom) *(À personnaliser)*
-*   **Email** : [votre.email@example.com](mailto:votre.email@example.com) *(À personnaliser)*
+*   **LinkedIn**: [My Profile](https://linkedin.com/in/your-name) *(To be customized)*
+*   **Email**: [your.email@example.com](mailto:your.email@example.com) *(To be customized)*
 
 <p align="right">
-  <em>Dernière mise à jour du système : Juillet 2026 💾</em>
+  <em>Last system update: July 2026 💾</em>
 </p>
