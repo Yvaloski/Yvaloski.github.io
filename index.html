@@ -981,18 +981,11 @@ GitHub : https://github.com/Yval
       }
     }
 
-    // Lancement et audio au premier clic utilisateur
+    // Lancement de l'environnement rétro au chargement
     window.addEventListener('DOMContentLoaded', () => {
       openWindow('win-welcome');
       initMinesweeper();
       initStarfield();
-      
-      // Auto-play startup sound on first user gesture
-      const startTrigger = () => {
-        playStartupSound();
-        window.removeEventListener('click', startTrigger);
-      };
-      window.addEventListener('click', startTrigger);
     });
 
     // ANIMATION STARFIELD (Écran de veille rétro)
