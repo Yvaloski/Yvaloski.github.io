@@ -341,6 +341,12 @@
       <span>Démineur.exe</span>
     </div>
 
+    <!-- Icône Terminal MS-DOS -->
+    <div class="desktop-icon" onclick="selectIcon(event, 'win-terminal')" ondblclick="openWindow('win-terminal')">
+      <img src="https://win98icons.alexmeub.com/icons/png/msdos-0.png" alt="Terminal">
+      <span>Command.com</span>
+    </div>
+
     <!-- Icône Corbeille -->
     <div class="desktop-icon" onclick="selectIcon(event, 'win-trash')" ondblclick="openTrash()">
       <img id="trash-icon-img" src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Trash">
@@ -376,6 +382,30 @@
       </div>
       <div style="display: flex; justify-content: flex-end; margin-top: 15px; padding-right: 10px;">
         <button onclick="closeWindow('win-welcome')" style="width: 100px; font-weight: bold;">Commencer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fenêtre Invite de commandes -->
+  <div class="window" id="win-terminal" style="width: 500px; height: 350px;">
+    <div class="title-bar" onmousedown="dragStart(event, 'win-terminal')">
+      <div class="title-bar-text">MS-DOS Prompt - Matrix Shell</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('win-terminal')"></button>
+        <button aria-label="Maximize" onclick="toggleMaximize('win-terminal')"></button>
+        <button aria-label="Close" onclick="closeWindow('win-terminal')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="background-color: #000000; color: #00cc00; font-family: monospace; padding: 10px; height: calc(100% - 30px); margin: 0; overflow-y: auto; display: flex; flex-direction: column;" onclick="focusTerminalInput()">
+      <div id="terminal-output" style="flex-grow: 1; white-space: pre-wrap; font-size: 12px; line-height: 1.4; margin-bottom: 5px;">Microsoft(R) Windows 98
+(C)Copyright Microsoft Corp 1981-1998.
+
+Tapez 'help' pour voir les commandes disponibles.
+
+</div>
+      <div style="display: flex; align-items: center; font-size: 12px;">
+        <span style="margin-right: 5px;">C:\></span>
+        <input type="text" id="terminal-input" style="background: transparent; border: none; color: #00cc00; font-family: monospace; font-size: 12px; outline: none; flex-grow: 1;" onkeydown="handleTerminalCommand(event)" autofocus autocomplete="off" spellcheck="false">
       </div>
     </div>
   </div>
@@ -557,6 +587,10 @@ GitHub : https://github.com/Yval
         <img src="https://win98icons.alexmeub.com/icons/png/minesweeper-0.png" width="16" height="16">
         Jeu Démineur
       </li>
+      <li onclick="openWindow('win-terminal')">
+        <img src="https://win98icons.alexmeub.com/icons/png/msdos-0.png" width="16" height="16">
+        MS-DOS Prompt
+      </li>
       <hr>
       <li onclick="alert('Arrêt impossible : L\'IA contrôle le système.')">
         <img src="https://win98icons.alexmeub.com/icons/png/key_win-2.png" width="16" height="16">
@@ -630,6 +664,11 @@ GitHub : https://github.com/Yval
       
       bringToFront(id);
       updateTaskbar();
+
+      // Focus automatique si c'est le terminal
+      if (id === 'win-terminal') {
+        setTimeout(focusTerminalInput, 50);
+      }
     }
 
     function closeWindow(id) {
@@ -782,7 +821,133 @@ GitHub : https://github.com/Yval
       } catch(e) {}
     }
 
-    // WINAMP LOGIC & CHIPTUNE SYNTH
+    // LOGIQUE DE L'INVITE DE COMMANDES TERMINAL
+    function focusTerminalInput() {
+      const input = document.getElementById('terminal-input');
+      if (input) input.focus();
+    }
+
+    const files = {
+      'cv_readme.txt': `==================================================
+              YVAL - DEVELOPPEUR
+==================================================
+
+COMPETENCES DU SYSTEME :
+------------------------
+- Front-End/Mobile : Kotlin (Android SDK), TS / JS (Angular)
+- Back-End         : PHP (Symfony), Java (Spring Boot)
+- DevOps / Systèmes: Docker, Git, Linux (Debian)
+
+CONTACT :
+---------
+GitHub : https://github.com/Yval`
+    };
+
+    let matrixRainInterval = null;
+
+    function handleTerminalCommand(e) {
+      if (e.key === 'Enter') {
+        const inputEl = e.currentTarget;
+        const cmdText = inputEl.value.trim();
+        inputEl.value = '';
+
+        if (matrixRainInterval) {
+          clearInterval(matrixRainInterval);
+          matrixRainInterval = null;
+          document.getElementById('terminal-output').innerHTML = '';
+        }
+
+        const outputEl = document.getElementById('terminal-output');
+        outputEl.innerHTML += `C:\\>${cmdText}\n`;
+
+        const parts = cmdText.split(' ');
+        const command = parts[0].toLowerCase();
+        const arg = parts.slice(1).join(' ').toLowerCase();
+
+        switch (command) {
+          case 'help':
+            outputEl.innerHTML += `Commandes disponibles :\n` +
+                                  `  help            Affiche cette aide\n` +
+                                  `  dir / ls        Liste les fichiers du répertoire courant\n` +
+                                  `  cat / type [f]  Affiche le contenu d'un fichier (ex: cat cv_readme.txt)\n` +
+                                  `  matrix          Déclenche la cascade de code Matrix\n` +
+                                  `  beep            Émet un signal sonore système\n` +
+                                  `  clear / cls     Efface l'écran\n`;
+            break;
+          case 'dir':
+          case 'ls':
+            outputEl.innerHTML += ` Répertoire de C:\\\n\n` +
+                                  `18/07/2026  16:59            748  cv_readme.txt\n` +
+                                  `18/07/2026  16:59    <DIR>        Projects\n` +
+                                  `18/07/2026  16:59         45,120  démineur.exe\n` +
+                                  `18/07/2026  16:59        102,400  winamp.exe\n\n` +
+                                  `       3 Fichier(s)        148,268 octets\n` +
+                                  `       1 Rép(s)         98,124,288 octets libres\n`;
+            break;
+          case 'cat':
+          case 'type':
+            if (!arg) {
+              outputEl.innerHTML += `Usage : ${command} [nom_du_fichier]\n`;
+            } else if (files[arg]) {
+              outputEl.innerHTML += `${files[arg]}\n`;
+            } else {
+              outputEl.innerHTML += `Fichier introuvable : ${arg}\n`;
+            }
+            break;
+          case 'beep':
+            playBeep(800, 0.2);
+            outputEl.innerHTML += `Bip !\n`;
+            break;
+          case 'clear':
+          case 'cls':
+            outputEl.innerHTML = '';
+            break;
+          case 'matrix':
+            startMatrixRain(outputEl);
+            break;
+          case '':
+            break;
+          default:
+            outputEl.innerHTML += `Commande ou nom de fichier non reconnu : "${command}"\n`;
+        }
+
+        // Scroll automatique
+        const winBody = inputEl.closest('.window-body');
+        winBody.scrollTop = winBody.scrollHeight;
+      }
+    }
+
+    function startMatrixRain(outputEl) {
+      outputEl.innerHTML = '';
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$+-*/=<>[]%#@";
+      const cols = 50;
+      const drops = Array(cols).fill(0);
+
+      outputEl.innerHTML += "Appuyez sur ENTRÉE pour quitter le mode Matrix...\n\n";
+
+      matrixRainInterval = setInterval(() => {
+        let line = '';
+        for (let i = 0; i < cols; i++) {
+          if (Math.random() > 0.95 || drops[i] > 0) {
+            line += chars[Math.floor(Math.random() * chars.length)];
+            if (drops[i] === 0) drops[i] = Math.floor(Math.random() * 12) + 4;
+            drops[i]--;
+          } else {
+            line += ' ';
+          }
+        }
+        outputEl.innerHTML += line + '\n';
+        
+        // Empêcher le débordement
+        const lines = outputEl.innerHTML.split('\n');
+        if (lines.length > 22) {
+          outputEl.innerHTML = "Appuyez sur ENTRÉE pour quitter le mode Matrix...\n\n" + lines.slice(lines.length - 20).join('\n');
+        }
+        
+        const winBody = outputEl.closest('.window-body');
+        winBody.scrollTop = winBody.scrollHeight;
+      }, 75);
+    }
     let musicInterval = null;
     let musicTempo = 150; // ms par note
     let musicStep = 0;
