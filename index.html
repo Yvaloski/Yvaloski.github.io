@@ -296,13 +296,13 @@
 
     <!-- Icône Démineur -->
     <div class="desktop-icon" onclick="selectIcon(event, 'win-mines')" ondblclick="openWindow('win-mines')">
-      <img src="https://win98icons.alexmeub.com/icons/png/game_mine_sweeper-0.png" alt="Minesweeper">
+      <img src="https://win98icons.alexmeub.com/icons/png/minesweeper-0.png" alt="Minesweeper">
       <span>Démineur.exe</span>
     </div>
 
     <!-- Icône Corbeille -->
     <div class="desktop-icon" onclick="selectIcon(event, 'win-trash')" ondblclick="openTrash()">
-      <img id="trash-icon-img" src="https://win98icons.alexmeub.com/icons/png/trash_empty-4.png" alt="Trash">
+      <img id="trash-icon-img" src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Trash">
       <span>Corbeille</span>
     </div>
   </div>
@@ -513,7 +513,7 @@ GitHub : https://github.com/Yval
         Winamp Player
       </li>
       <li onclick="openWindow('win-mines')">
-        <img src="https://win98icons.alexmeub.com/icons/png/game_mine_sweeper-0.png" width="16" height="16">
+        <img src="https://win98icons.alexmeub.com/icons/png/minesweeper-0.png" width="16" height="16">
         Jeu Démineur
       </li>
       <hr>
@@ -556,7 +556,7 @@ GitHub : https://github.com/Yval
       } else {
         if (confirm("Voulez-vous vider la Corbeille ?")) {
           trashEmpty = true;
-          document.getElementById('trash-icon-img').src = "https://win98icons.alexmeub.com/icons/png/trash_empty-4.png";
+          document.getElementById('trash-icon-img').src = "https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png";
           playBeep(150, 0.15);
         }
       }
