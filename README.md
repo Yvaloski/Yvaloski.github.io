@@ -1,9 +1,4 @@
-# 💻 Yvaloski's Retro Workstation
-
-<!-- Rendu de l'image Windows 98 -->
-<p align="center">
-  <img src="win98_desktop.svg" width="850" alt="Windows 98 Desktop CV" />
-</p>
+# 💻 Yval's Retro Workstation
 
 ---
 
@@ -14,10 +9,10 @@
     <td width="50%">
       <strong>📁 Mes Documents (Projets)</strong>
       <ul>
-        <li>⚡ <a href="https://github.com/Yvaloski/apex-assist">apex-assist</a> — Assistant IA personnel (TS)</li>
-        <li>💬 <a href="https://github.com/Yvaloski/ChatApp">ChatApp</a> — Chat mobile privé (Kotlin)</li>
-        <li>🖥️ <a href="https://github.com/Yvaloski/mydesk">mydesk</a> — Bureau virtuel web (EJS)</li>
-        <li>🛍️ <a href="https://github.com/Yvaloski/Eni_Encheres">Eni_Encheres</a> — Plateforme d'enchères (Java)</li>
+        <li>⚡ <a href="https://github.com/Yval/apex-assist">apex-assist</a> — Assistant IA personnel (TS)</li>
+        <li>💬 <a href="https://github.com/Yval/ChatApp">ChatApp</a> — Chat mobile privé (Kotlin)</li>
+        <li>🖥️ <a href="https://github.com/Yval/mydesk">mydesk</a> — Bureau virtuel web (EJS)</li>
+        <li>🛍️ <a href="https://github.com/Yval/Eni_Encheres">Eni_Encheres</a> — Plateforme d'enchères (Java)</li>
         <li>☕ <a href="#">spring-boot-api</a> — API REST Backend (Spring Boot)</li>
         <li>🅰️ <a href="#">angular-dashboard</a> — Dashboard Frontend SPA (Angular)</li>
       </ul>
