@@ -32,8 +32,8 @@
 
 ### ✉️ Contact Me
 
-*   **LinkedIn**: [My Profile](https://linkedin.com/in/your-name) *(To be customized)*
-*   **Email**: [your.email@example.com](mailto:your.email@example.com) *(To be customized)*
+*   **LinkedIn**: [My Profile](https://www.linkedin.com/in/yves-alexis-lorvellec-0b5a5084/) 
+*   **Email**: [yalorvellec@gmail.com](mailto:yalorvellec@gmail.com)
 
 <p align="right">
   <em>Last system update: July 2026 💾</em>
